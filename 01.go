@@ -1,8 +1,10 @@
 package main
 
 import (
+	"database/sql"
 	"fmt"
 	_"github.com/go-sql-driver/mysql"
+	_"unsafe"
 )
 
 func fun1() {
@@ -42,11 +44,11 @@ func condition() {
 }
 
 func looped() {
-	for a := 1; a < 101; a++ {
-		if a == 99 {
-			continue
-		}
-		fmt.Println("This is loop", a)
+	/*
+	循环...
+	*/
+	for a := 1; a < 11; a++ {
+		fmt.Println("This is loop ", a)
 	}
 }
 
@@ -62,13 +64,71 @@ func switchde() {
 	}
 }
 
-func connectionwithmysql() {
+func pointer()  {
+	//  Go语言中的指针
+	var a int = 10
+	var ptr *int
+	ptr = &a
+	fmt.Println(ptr, *ptr)
+}
 
+func array()  {
+	var a = [10] int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	b := a[0:5]
+	fmt.Println(len(a))
+	fmt.Println(cap(a))
+	fmt.Println(a)
+	fmt.Println(b)
+	
+}
+
+func connectionwithmysql() {
+	//  数据库连接...
+	const(
+		userName = "root"
+		password = "password"
+		ip = "127.0.0.1"
+		port = "3306"
+		dbName = "world"
+	)
+
+	db, err := sql.Open("mysql", "root:password@/world?charset=utf8")
+	if (err != nil){
+		fmt.Println("错误", err)
+		return
+	}
+	c := db.Ping()
+	if c != nil {
+		fmt.Println("错误", err)
+	}else{
+		fmt.Println("连接成功")
+	}
+	rows, _ := db.Query("select * from dytt_new")
+	// fmt.Println(rows)
+	for rows.Next() {
+		
+	}
+}
+
+func factorial(n uint64) (result uint64) {
+	if (n > 0){
+		result = n * factorial(n-1)
+		return result
+	}
+	return 1
+}
+
+func fib(n uint64) uint64 {
+	// 递归的性能太差。
+	var a, b uint64 = 0, 1
+	var i uint64
+	for i=0; i < n; i++{
+		a, b = b, a + b
+		fmt.Println(a)
+	}
+	return 1
 }
 
 func main() {
-	// condition()
-	// variable1()
-	// switchde()
-	looped()
+	connectionwithmysql()
 }
