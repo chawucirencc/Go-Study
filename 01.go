@@ -79,6 +79,9 @@ func array()  {
 	fmt.Println(cap(a))
 	fmt.Println(a)
 	fmt.Println(b)
+	for k, v := range a{
+		fmt.Println(k, ":", v)
+	}
 	
 }
 
@@ -130,5 +133,6 @@ func fib(n uint64) uint64 {
 }
 
 func main() {
-	connectionwithmysql()
+	// connectionwithmysql()
+	array()
 }
