@@ -132,7 +132,23 @@ func fib(n uint64) uint64 {
 	return 1
 }
 
+
+func findstruct()  {
+	type student struct {
+		id int
+		name string
+		mobile int
+	}
+	var stuname student
+	var a *student
+	stuname.name = "Jonh"
+	// var b int
+	// b = 10
+	// fmt.Println(&a)
+	fmt.Println(a)
+}
+
 func main() {
 	// connectionwithmysql()
-	array()
+	findstruct()
 }
