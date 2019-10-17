@@ -5,23 +5,51 @@ import (
 	"fmt"
 	_"github.com/go-sql-driver/mysql"
 	_"unsafe"
+	_"math"
 )
 
-func fun1() {
-	fmt.Println("This is a ")
+func helloworld() {
+	// 文本输出，hello world
+	fmt.Println("This is a text")
+	fmt.Println("Hello World")
 	// 格式化输出，会自动换行。
 }
 
-func test() {
-	fmt.Println("This is function test!")
+
+func variable()  {
+	// Go语言变量的使用。
+	var a string = "SAMSUNG"
+	fmt.Println(a)
+
+	b := 12 //简易形式
+	fmt.Println(b)
+
+	var c, d int = 1, 2
+	fmt.Println(c, ":", d)
+
+	var e int //不主动赋值，默认值。
+	var f string
+	fmt.Println(e, ":", f)
 }
 
-func fun2() {
-	fmt.Printf("This is fun2")
-	// 输出之后不会自动换行。
+
+func constantuse()  {
+	//常量的使用。
+	const n = 5e8
+	fmt.Println(n)
+
+	const d = 3e20/n
+	fmt.Println(d)
+	fmt.Println(int64(d))
 }
 
-var ds int = 10
+
+func forloop()  {
+	//for循环使用。
+	for i := 0; i < 20; i++ {
+		fmt.Println("Number is ", i)
+	}
+}
 
 func variable1() {
 	var s string = "This is string"
@@ -149,6 +177,5 @@ func findstruct()  {
 }
 
 func main() {
-	// connectionwithmysql()
-	findstruct()
+	forloop()
 }
