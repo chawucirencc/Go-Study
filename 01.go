@@ -47,57 +47,75 @@ func constantuse()  {
 func forloop()  {
 	//for循环使用。
 	for i := 0; i < 20; i++ {
+		if i == 15 {
+			fmt.Println("i=", i)
+			continue
+		}
 		fmt.Println("Number is ", i)
-	}
+	}	
 }
 
-func variable1() {
-	var s string = "This is string"
-	// var s string = "This is"
-	// f := "Runbool"
-	fmt.Println(s)
 
-	// fmt.Println(f)
-	var a, b int = 12, 14
-	fmt.Println(a, b)
-}
-
-func condition() {
-	var a int = 15
-	if a > 20 {
-		fmt.Print("a:")
+func choseifelse()  {
+	// if...else...选择语句
+	var i int = 21
+	if i == 20{
+		fmt.Println("i =", i)
 	} else {
-		fmt.Print("a:", a)
+		fmt.Println("i not", 20)
 	}
 }
 
-func looped() {
-	/*
-	循环...
-	*/
-	for a := 1; a < 11; a++ {
-		fmt.Println("This is loop ", a)
-	}
-}
 
 func switchde() {
+	// switch语句的使用。
 	a := 100
 	switch a {
 	case 10:
 		fmt.Println("a", 10)
 	case 20:
 		fmt.Println("a", 20)
-	default:
+	default:	// 没有匹配的情况下输出default的内容。
 		fmt.Println("100")
 	}
 }
 
-func pointer()  {
-	//  Go语言中的指针
-	var a int = 10
-	var ptr *int
-	ptr = &a
-	fmt.Println(ptr, *ptr)
+func slicesfun()  {
+	// 切片的使用，创建非0长度的空切片，使用内置函数make(),len()返回切片的长度。
+	s := make([]string, 3)
+	fmt.Println(s)
+
+	s[0] = "a"
+	s[1] = "b"
+	s[2] = "c"
+	fmt.Println(s)
+	fmt.Println("s[0] =", s[0])  //取第一个元素
+	fmt.Println("长度：", len(s))  // 获取长度
+	fmt.Println("s[:2] =", s[:2])
+}
+
+
+func rangegofun()  {
+	// Go语言范围的使用。
+	num := []int{1, 2, 3, 4, 5, 6, 7, 8}
+	s := "This is a test text!"
+	for _, i := range num { // range返回两个值，第一个为数组中元素的下标，第二个为数组中的元素。
+		fmt.Println(i)
+	}
+	for _, j := range s { // 这种对于字符串的遍历方法称为Unicode遍历。
+		fmt.Println(j)
+	}
+	for k := 0; k < len(s); k++ {	// 这种遍历方法称为UTF-8遍历。
+		fmt.Println(s[k])
+	}
+}
+
+
+func functionuseadd(a int, b int) int {// 函数的使用，加入参数。
+	fmt.Println(a)
+	fmt.Println(b)
+	fmt.Println(a+b)
+	return a + b
 }
 
 func array()  {
@@ -177,5 +195,5 @@ func findstruct()  {
 }
 
 func main() {
-	forloop()
+	functionuseadd(10, 2)
 }
