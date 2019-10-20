@@ -5,7 +5,6 @@ import (
 	"fmt"
 	_ "math"
 	_ "unsafe"
-
 	_ "github.com/go-sql-driver/mysql"
 )
 
@@ -105,6 +104,20 @@ func rangegofun() {
 	}
 }
 
+
+func array() {	//数组。
+	var a = [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	b := a[0:5]
+	fmt.Println(len(a))
+	fmt.Println(cap(a))
+	fmt.Println(a)
+	fmt.Println(b)
+	for k, v := range a {
+		fmt.Println(k, ":", v)
+	}
+}
+
+
 func functionuseadd(a int, b int) (int, int, int) { // 函数的使用，加入参数。加法函数。
 	// 函数可以返回多个值。
 	fmt.Println(a)
@@ -140,31 +153,48 @@ func closepackfunctionuse() func() int { // 匿名函数，闭包函数。
 }
 
 func fib(n uint64) uint64 { // 函数递归的使用。
-	// 递归的性能太差。
+	// 递归的性能比较差。
 	var a, b uint64 = 0, 1
 	var i uint64
 	for i = 0; i < n; i++ {
 		a, b = b, a+b
 		fmt.Println(a)
 	}
-	return 1
+	return 1	// 函数必须有return
 }
 
-func array() {
-	var a = [10]int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
-	b := a[0:5]
-	fmt.Println(len(a))
-	fmt.Println(cap(a))
-	fmt.Println(a)
-	fmt.Println(b)
-	for k, v := range a {
-		fmt.Println(k, ":", v)
-	}
 
+func pointeruse()  {	//指针的简单使用。
+	var name string
+	var age int
+	name = "John"
+	age = 23
+	fmt.Println("name:", name)
+	fmt.Println("age:", age)
+	var namepointer *string
+	var agepointer *int
+	namepointer = &name
+	agepointer = &age
+	fmt.Println("name_address:", &namepointer)
+	fmt.Println("age_address:", &agepointer)
+	fmt.Println("name_value:", *namepointer)
+	fmt.Println("age_value:", *agepointer)
+}
+
+
+func structureuse()  {	//结构体。
+	type Person struct{	//先声明一个结构体。
+		name string
+		age int
+	}
+	var a Person	// 定义一个变量为结构体。
+	a = Person{"John", 23} //赋值
+	fmt.Println("name:", a.name)
+	fmt.Println("age:",a.age)
 }
 
 func connectionwithmysql() {
-	//  数据库连接...
+	//  数据库连接...（连接mysql）
 	const (
 		userName = "root"
 		password = "password"
@@ -172,7 +202,6 @@ func connectionwithmysql() {
 		port     = "3306"
 		dbName   = "world"
 	)
-
 	db, err := sql.Open("mysql", "root:password@/world?charset=utf8")
 	if err != nil {
 		fmt.Println("错误", err)
@@ -187,33 +216,35 @@ func connectionwithmysql() {
 	rows, _ := db.Query("select * from dytt_new")
 	// fmt.Println(rows)
 	for rows.Next() {
-
 	}
 }
 
+
 func factorial(n uint64) (result uint64) {
+	// 使用递归计算数字的阶乘。
 	if n > 0 {
 		result = n * factorial(n-1)
+		fmt.Println(result)
 		return result
 	}
 	return 1
 }
 
-func findstruct() {
-	type student struct {
-		id     int
-		name   string
-		mobile int
+
+func interfaceuse()  {	// 接口的使用。
+	type Nameable interface{
+		call() 
 	}
-	var stuname student
-	var a *student
-	stuname.name = "Jonh"
-	// var b int
-	// b = 10
-	// fmt.Println(&a)
-	fmt.Println(a)
+	type Name struct{
+		name string
+		age int
+	}
+	var a Name
+	func (a Name)call() {
+		fmt.Println(a.name)
+	}
 }
 
 func main() {
-	
+	factorial(3)
 }
