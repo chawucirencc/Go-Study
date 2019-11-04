@@ -240,9 +240,9 @@ func interfaceuse()  {	// 接口的使用。
 		age int
 	}
 	var a Name
-	func (a Name)call() {
-		fmt.Println(a.name)
-	}
+	// func (a Name)call() {
+	// 	fmt.Println(a.name)
+	// }
 }
 
 func main() {
