@@ -239,7 +239,7 @@ func interfaceuse()  {	// 接口的使用。
 		name string
 		age int
 	}
-	var a Name
+	// var a Name
 	// func (a Name)call() {
 	// 	fmt.Println(a.name)
 	// }
