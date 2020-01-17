@@ -20,14 +20,14 @@ func variable() {
 	var a string = "SAMSUNG"
 	fmt.Println(a)
 
-	b := 12 //简易形式
+	b := 12 //简易形式（赋值）
 	fmt.Println(b)
 
 	var c, d int = 1, 2
 	fmt.Println(c, ":", d)
 
-	var e int //不主动赋值，默认值。
-	var f string
+	var e int //不主动赋值，默认值。int、float为0。bool为false，复数为0+0i。string为空，错误类型error为nil。
+	var f string //复合类型，如指针、切片、字典、通道、接口，默认值为nil。而数组的默认值要根据其数据类型来确定。例如：var a [4]int，其默认值为[0 0 0 0]。
 	fmt.Println(e, ":", f)
 }
 
@@ -63,7 +63,7 @@ func choseifelse() {
 }
 
 func switchde() {
-	// switch语句的使用。
+	// switch语句的使用。(多分支选择语句)
 	a := 100
 	switch a {
 	case 10:
@@ -214,8 +214,18 @@ func connectionwithmysql() {
 		fmt.Println("连接成功")
 	}
 	rows, _ := db.Query("select * from dytt_new")
-	// fmt.Println(rows)
+	columns, _ := rows.Columns()
+	fmt.Println(columns)
+	fmt.Println(rows)
 	for rows.Next() {
+		var date string
+		var name string
+		var url string
+		err :=rows.Scan(&date, &name, &url)
+		if err != nil{
+			fmt.Println(err)
+		}
+		fmt.Println(date, name, url)
 	}
 }
 
@@ -246,5 +256,7 @@ func interfaceuse()  {	// 接口的使用。
 }
 
 func main() {
-	factorial(3)
+	// factorial(3)
+	// array()
+	connectionwithmysql()
 }
